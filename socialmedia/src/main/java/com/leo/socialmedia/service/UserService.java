@@ -1,0 +1,19 @@
+package com.leo.socialmedia.service;
+
+import com.leo.socialmedia.domain.User;
+import com.leo.socialmedia.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository repository;
+
+    public List<User> findAll() {
+    return repository.findAll();
+    }
+}
