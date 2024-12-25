@@ -12,8 +12,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
@@ -31,7 +29,6 @@ public class UserResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User obj = service.findById(id);
-
         return ResponseEntity.ok().body(new UserDTO(obj));
     }
 
@@ -41,6 +38,12 @@ public class UserResource {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 
