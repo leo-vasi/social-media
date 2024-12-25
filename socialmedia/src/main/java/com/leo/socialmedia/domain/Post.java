@@ -1,5 +1,6 @@
 package com.leo.socialmedia.domain;
 
+import com.leo.socialmedia.dto.AuthorDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,13 +16,13 @@ public class Post implements Serializable {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     public Post() {
 
     }
 
-    public Post(String body, Date date, String id, String title, User author) {
+    public Post(String body, Date date, String id, String title, AuthorDTO author) {
         this.body = body;
         this.date = date;
         this.id = id;
@@ -61,11 +62,11 @@ public class Post implements Serializable {
         this.title = title;
     }
 
-    public User getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 

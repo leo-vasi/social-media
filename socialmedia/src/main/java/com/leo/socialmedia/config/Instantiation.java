@@ -2,6 +2,7 @@ package com.leo.socialmedia.config;
 
 import com.leo.socialmedia.domain.Post;
 import com.leo.socialmedia.domain.User;
+import com.leo.socialmedia.dto.AuthorDTO;
 import com.leo.socialmedia.repository.PostRepository;
 import com.leo.socialmedia.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,11 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User("alex@gmail.com", null, "Alex Green");
         User bob = new User("bob@gmail.com",null, "Bob Grey");
 
-        Post post1 = new Post("Vou viajar para São Paulo", sdf.parse("21/03/2018"), null, "Partiu viagem", maria);
-        Post post2 = new Post("Vou viajar para São Paulo", sdf.parse("23/03/2018"), null, "Bom dia", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post("Vou viajar para São Paulo", sdf.parse("21/03/2018"), null, "Partiu viagem", new AuthorDTO(maria));
+        Post post2 = new Post("Vou viajar para São Paulo", sdf.parse("23/03/2018"), null, "Bom dia", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
